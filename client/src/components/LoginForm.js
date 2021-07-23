@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { loginUser } from '../utils/API';
+// import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
 import { useMutation } from '@apollo/react-hooks';
@@ -30,7 +30,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await loginUser(userFormData); 
+      //const response = await User(userFormData); 
       const response = await login(userFormData);
 
       if (!response.ok) {
