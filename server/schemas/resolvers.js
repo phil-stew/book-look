@@ -1,13 +1,16 @@
-const { Book } = require('../models');
+const { Book, User } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+
+
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Book.find();
+    me: async () => {
+      return User.find();
     },
 
-    profile: async (parent, { bookId }) => {
-      return Book.findOne({ _id: bookId });
+    book: async () => {
+      return Book.findOne() ;
     },
   },
 }
