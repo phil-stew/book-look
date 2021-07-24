@@ -19,10 +19,34 @@ const LoginForm = () => {
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   // check if form has everything (as per react-bootstrap docs)
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
+
+  //   try {
+  //     //const response = await User(userFormData); 
+  //     const response = await login(userFormData);
+
+  //     if (!response.ok) {
+  //       throw new Error('something went wrong!');
+  //     }
+
+  //     const { token, user } = await response.json();
+  //     console.log(user);
+  //     Auth.login(token);
+  //   } catch (err) {
+  //     console.error(err);
+  //     setShowAlert(true);
+  //   }
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -30,16 +54,9 @@ const LoginForm = () => {
     }
 
     try {
-      //const response = await User(userFormData); 
-      const response = await login(userFormData);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
+      const { data } = await login({ variables: { ...userFormData } });
+      console.log(data);
+      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
