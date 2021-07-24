@@ -33,6 +33,8 @@ const typeDefs = gql`
 type Query {
     me: User,
     book: [Book]
+    users: [User]
+    user(username: String): User
 }
 `
 
